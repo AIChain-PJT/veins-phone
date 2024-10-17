@@ -92,6 +92,7 @@ export interface VeinsPhoneOptionsOtherSettings {
 }
 
 export interface VeinsSip {
+    authHost?: string
     host: string
     port: number
     path: string
