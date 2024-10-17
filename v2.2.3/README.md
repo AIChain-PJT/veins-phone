@@ -249,6 +249,36 @@ window.addEventListener('load', () => {
     .catch(err => console.error(err))
 })
 ```
+- 通話時間が 3分 を超えると自動的に切電されます。
+- 通話時間が 3分 に収まる利用方法であれば、下記 `token` と `sip.authHost` による制限解除は必要ありません。
+- 起動時の options に、`token` と `sip.authHost` を正しく設定すると、3分 を超えても切電されません。
+- 以下、`token` と `sip.authHost` の設定例です。
+```
+window.addEventListener('load', () => {
+    const v = window.Veins
+    v.phone({
+        token: 'CwCsSrYZrRoUJNVSkoaksunSxc3XVmQ6tWXZUL3vSMPw==',
+        x: v.PhoneX.RIGHT,
+        y: v.PhoneY.BOTTOM,
+        sip: {
+            authHost: 'api.sample.com',
+            host: 'sip.sample.com',
+            port: 443,
+            path: '/veins/ws',
+            username: 'v01-00002-00000000003-wss',
+            password: 'Okx4?8qDkK2ft6Xmhg_y',
+            turnHost: "sampleturn.com",
+            turnPort: 3478,
+            turnUsername: "sampleturn",
+            turnPassword: "sampleturnpw"
+        }
+    })
+    .then(id => { console.log('CURRENT_ID: '+id) })
+    .catch(err => console.error(err))
+})
+```
+- `sip.authHost` は、いかなる Veins サーバーでも問題ありません。
+- `token` は、`sip.authHost` の Veins サーバーにて APX 権限者により発行されたトークンである必要があります。
 - その他、利用できる全ての options の定義は、**[コチラ](./src/model/VeinsModel.ts)** の `VeinsPhoneOptions` をご覧ください。
 ## Veins Phone の Veins Mode 起動
 - APX 権限者により発行された下記情報を用意
