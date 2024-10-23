@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <link rel="icon" href="favicon-a0f8c7b8.ico">
+    <link rel="stylesheet" href="style.css" />
+    <title>Veins</title>
+    <script type="module" crossorigin src="veins.js"></script>
+    
+  </head>
+  <body>
+    <div id="__vapps-version" style="position: fixed; top: 0; right: 0; padding: 50px; font-size: 20px; color: #fff"></div>
+    
+    <script>
+      window.addEventListener('load', () => {
+        const v = window.Veins
+        const d = document.getElementById('__vapps-version')
+        if (d) d.innerHTML = v.Version
+        v.on(v.Event.PHONE.ON_MOUNTED.RIGHT.BOTTOM, () => {
+          v.putPhoneLines(v.PhoneX.RIGHT, v.PhoneY.BOTTOM, v.getPhoneLineSamples())
+          v.putPhoneBookItems(v.PhoneX.RIGHT, v.PhoneY.BOTTOM, v.getPhoneBookItemSamples())
+          v.putPhoneSpeedDialItems(v.PhoneX.RIGHT, v.PhoneY.BOTTOM, v.getPhoneSpeedDialItemSamples())
+        })
+        v.phone({
+          token: 'sampletoken',
+          x: v.PhoneX.RIGHT,
+          y: v.PhoneY.BOTTOM,
+          veins: {
+            host: 'sample.com',
+            apx: 1,
+            vdr: 2,
+            email: 'sample@sample.com',
+            password: 'samplepw'
+          }
+        })
+        .then(id => { console.log('CURRENT_ID: '+id) })
+        .catch(err => console.error(err))
+      })
+    </script>
+  </body>
+</html>
