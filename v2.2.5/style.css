@@ -1,0 +1,39 @@
+html {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: #ffffff;
+    background-image: url(sample-bg.jpg);
+    background-size: cover;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+body::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    -webkit-mask-image: url(logo.png);
+    mask-image: url(logo.png);
+    mask-size: 50%;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    animation: gradient 60s infinite linear;
+    background: linear-gradient(90deg, black, red, orange, yellow, green, blue, indigo, violet, pink, brown, white);
+    background-size: 400% 100%;
+    opacity: 0.2;
+}
+
+@keyframes gradient {
+    0% { background-position: 100% 0; }
+    50% { background-position: 0 0; }
+    100% { background-position: 100% 0; }
+}
